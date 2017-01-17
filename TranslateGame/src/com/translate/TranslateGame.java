@@ -9,8 +9,11 @@ public class TranslateGame {
 		LoadWords load = new LoadWords();
 		load.loadWordsFromFile();
 		
+		GuessWords gw = new GuessWords();
+		
 		GameMenu gm = new GameMenu();
 		Scanner in = new Scanner(System.in);
+		
 		
 		//game loop
 		while(true)
@@ -21,7 +24,17 @@ public class TranslateGame {
 		switch(n)
 		{
 		case 1:
-			//new game
+			load.clearWords();
+			gm.newGameSettings();
+			for (int i = 0; i< gm.getNumberOfWords(); i++)
+				load.drawWords();
+			
+			for (int i = 0; i< gm.getNumberOfWords(); i++)
+			{
+				gw.addWordsToGuess(load.getEnglishWords(load.getWord(i)));
+				gw.addCorrectAnswers(load.getPolishWords(load.getWord(i)));
+			}
+			
 		break;
 		case 2:
 			//try again

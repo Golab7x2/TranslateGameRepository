@@ -48,4 +48,9 @@ public class GameMenu {
 		return gamesPlayed;
 	}
 	
+	public int getNumberOfWords()
+	{
+		return numberOfWords;
+	}
+	
 }

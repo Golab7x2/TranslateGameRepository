@@ -4,14 +4,23 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LoadWords {
 
-	private char SEPARATOR = ';';
+	final static char SEPARATOR = ';';
 	private List<String> englishWords;
 	private List<String> polishWords;
+	private List<Integer> numbersOfWords;
 	
-	//Loads words to list and sort them into separated lists
+	public LoadWords()
+	{
+		englishWords = new ArrayList<>();
+		polishWords = new ArrayList<>();
+		numbersOfWords = new ArrayList<>();
+	}
+	
+	//Loads words to list and put them into separated lists
 	public void loadWordsFromFile()
 	{
 		try
@@ -26,9 +35,6 @@ public class LoadWords {
 				s = reader.readLine();
 			}			
 			reader.close();
-			
-			englishWords = new ArrayList<>();
-			polishWords = new ArrayList<>();
 			
 			for(String n : loadedWords)
 			{
@@ -45,7 +51,6 @@ public class LoadWords {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			System.out.println("Base of words cannot be loaded");
 		}
 
@@ -62,9 +67,38 @@ public class LoadWords {
 		return polishWords.get(n);
 	}
 	
-	public int getSizeOfBase()
-	{
-		return englishWords.size();
-	}
 
+	//Draws words to guess and checks if words do not repeat	
+	public void drawWords()
+	{
+		Random rand = new Random();
+		int check = (int)(rand.nextDouble()*(this.englishWords.size()-1));
+		boolean loopControl = false;
+		
+		while(loopControl)
+		{
+			loopControl = false;
+			
+		for (int i : numbersOfWords)
+			if (check == i)
+			{
+				loopControl = true;
+				check = (int)(rand.nextDouble()*(this.englishWords.size()-1));
+			}	
+		}
+		
+		numbersOfWords.add(check);
+		System.out.println(check);
+	}
+	
+	public void clearWords()
+	{
+		numbersOfWords.clear();
+	}
+	
+	public int getWord(int index)
+	{
+		return numbersOfWords.get(index);
+	}
+	
 }
