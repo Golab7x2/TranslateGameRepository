@@ -26,14 +26,30 @@ public class GuessWords {
 	}
 
 	
-	public void clearToGuess()
+	public void clearWords()
 	{
 		wordsToGuess.clear();
-	}
-	
-	public void clearCorrect()
-	{
 		correctAnswers.clear();
 	}
+
+	public void question(int i)
+	{
+		System.out.println("What is the meaning of: "+wordsToGuess.get(i));
+	}
 	
+	public int checkAnswer(String answer, int i)
+	{
+		if (this.correctAnswers.get(i).equals(answer))
+			{
+			System.out.println("Correct! Points added!");
+			return 1;
+			}
+		else 
+			{
+			System.out.println("Wrong answer! :(");
+			return 0;
+			}
+	}
+		
+		
 }

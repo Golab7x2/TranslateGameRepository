@@ -68,19 +68,19 @@ public class LoadWords {
 	}
 	
 
-	//Draws words to guess and checks if words do not repeat	
+	//Draws words to guess and checks if words do not repeat
 	public void drawWords()
 	{
 		Random rand = new Random();
-		int check = (int)(rand.nextDouble()*(this.englishWords.size()-1));
+		Integer check = (int)(rand.nextDouble()*(this.englishWords.size()));
 		boolean loopControl = false;
 		
 		while(loopControl)
 		{
 			loopControl = false;
 			
-		for (int i : numbersOfWords)
-			if (check == i)
+		for (Integer i : numbersOfWords)
+			if (check.equals(i))
 			{
 				loopControl = true;
 				check = (int)(rand.nextDouble()*(this.englishWords.size()-1));

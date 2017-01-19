@@ -1,12 +1,10 @@
 package com.translate;
 
-import java.util.Scanner;
-
 public class GameMenu {
 
 	private int numberOfWords;
-	private double bestRecord;
 	private int gamesPlayed;
+	private double bestRecord;
 	
 	public GameMenu()
 	{
@@ -20,17 +18,23 @@ public class GameMenu {
 	}
 	
 	
-	public void newGameSettings()
+	public void question()
 	{
-		Scanner in = new Scanner(System.in);
-		System.out.print("How many words? ");
-		numberOfWords = in.nextInt();
-		in.close();
+		System.out.print("How many words?");
 	}
 	
-	public void setBestRecord(int correctWords)
+	public void setNumberOfWords(int m)
 	{
-		bestRecord = (correctWords/this.numberOfWords) * 100 + this.numberOfWords;
+		this.numberOfWords = m;
+	}
+	
+	//ZMIENIC NALICZANIE WYNIKOW
+	public void setBestRecord(int correctAnswers)
+	{
+		double tempBest = correctAnswers/this.numberOfWords + 10 * this.numberOfWords;
+		
+		if (tempBest > this.bestRecord)
+			bestRecord = tempBest;
 	}
 	
 	public double getBestRecord()
