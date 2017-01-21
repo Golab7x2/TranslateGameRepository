@@ -33,24 +33,30 @@ public class TranslateGame {
 			gm.question();
 			int m = in.nextInt();
 			gm.setNumberOfWords(m);
-			for (int i = 0; i < gm.getNumberOfWords(); i++)
-				load.drawWords();
+			if (load.getSize() >= m)
+			{
+				for (int i = 0; i < gm.getNumberOfWords(); i++)
+					load.drawWords();
 			
-			for (int i = 0; i < gm.getNumberOfWords(); i++)
-			{
-				gw.addWordsToGuess(load.getEnglishWords(load.getWord(i)));
-				gw.addCorrectAnswers(load.getPolishWords(load.getWord(i)));
+				for (int i = 0; i < gm.getNumberOfWords(); i++)
+				{
+					gw.addWordsToGuess(load.getEnglishWords(load.getWord(i)));
+					gw.addCorrectAnswers(load.getPolishWords(load.getWord(i)));
+				}
+				in.nextLine();
+				correct = 0;
+				for (int i = 0; i < gm.getNumberOfWords(); i++)
+				{
+					gw.question(i);
+					int a = gw.checkAnswer(in.nextLine(), i);
+					correct += a;
+					gm.setBestRecord(correct);
+				}
+				gm.setGamesPlayed(++iterator);
 			}
-			in.nextLine();
-			correct = 0;
-			for (int i = 0; i < gm.getNumberOfWords(); i++)
-			{
-				gw.question(i);
-				int a = gw.checkAnswer(in.nextLine(), i);
-				correct += a;
-				gm.setBestRecord(correct);
+			else {
+				System.out.println("Maimum is: "+load.getSize());
 			}
-			gm.setGamesPlayed(++iterator);
 		break;
 		
 		case 2:
@@ -82,7 +88,6 @@ public class TranslateGame {
 		break;
 		}
 		}
-
 		//end of game loop
 	}
 

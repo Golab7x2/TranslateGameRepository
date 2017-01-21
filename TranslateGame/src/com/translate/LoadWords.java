@@ -73,8 +73,7 @@ public class LoadWords {
 	{
 		Random rand = new Random();
 		Integer check = (int)(rand.nextDouble()*(this.englishWords.size()));
-		boolean loopControl = false;
-		
+		boolean loopControl = true;
 		while(loopControl)
 		{
 			loopControl = false;
@@ -84,7 +83,8 @@ public class LoadWords {
 			{
 				loopControl = true;
 				check = (int)(rand.nextDouble()*(this.englishWords.size()-1));
-			}	
+			}
+		System.out.println("OK");
 		}
 		
 		numbersOfWords.add(check);
@@ -101,4 +101,8 @@ public class LoadWords {
 		return numbersOfWords.get(index);
 	}
 	
+	public int getSize()
+	{
+		return this.englishWords.size();
+	}
 }
